@@ -1,0 +1,41 @@
+
+#platform = ARGUMENTS.get('OD', Platform())
+#include = "#export/$PLATFORM/include"
+#lib = "#export/$PLATFORM/lib"
+#ex = "#export/$PLATFORM/ex"
+#env = Environment(CC = 'g++', 
+	#CCFLAGS='-O2 -march=i686 -Wall',
+	#PLATFORM = platform,
+	#BINDIR = ex,
+	#INCDIR = include,
+	#LIBDIR = lib,
+	#CPPPATH = [include],
+	#LIBPATH = [lib],
+	#LIBS = '')
+
+env = Environment(CC = 'g++', 
+	#CCFLAGS='-O2 -march=i686 -Wall',
+	CCFLAGS='-O0 -march=i686 -Wall',
+	BINDIR = 'ex')
+
+#env.Program('etb2-parser',['build/debug/main.cpp'])
+
+env.Program(target='compiler_output_ex',source=Glob('*.cpp'))
+
+#Default(env.Install(directory='bin', source='foo'))
+
+
+#Import('env')
+#Program('foo', 'foo.c')
+
+#env = Environment()
+#env.Append(CCFLAGS='-O2')
+#env.Append(LIBS = ['SDL_image','GL'])
+
+#sources = Split("""
+#main.cpp
+#""")
+#object_list = env.Object(source = sources)
+
+#env.Program(target = "etb2-parser", source = object_list)
+
