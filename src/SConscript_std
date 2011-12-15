@@ -1,55 +1,3 @@
-#import os, SCons
-#env = Environment(CC = 'g++', 
-  ##CCFLAGS='-O2 -march=i686 -Wall',
-  ##CCFLAGS='-O0 -march=i686 -Wall',
-  #BINDIR = 'ex')
-
-
-#platform = ARGUMENTS.get('OD', Platform())
-#env = Environment(
-  #options=vars, 
-  #ENV=os.environ, 
-  #BINDIR = 'ex')
-
-#import os, SCons
-
-##opts = Options()
-#vars = Variables()
-##env = Environment(options=opts, ENV=os.environ, BINDIR = 'ex')
-#env = Environment(options=vars, ENV=os.environ, BINDIR = 'ex')
-##opts.Add(BoolOption('magickpp', "check for Magick++",1))
-#vars.Add(BoolVariable('magickpp', "check for Magick++",1))
-##Help(opts.GenerateHelpText(env))
-#Help(vars.GenerateHelpText(env))
-##opts.Update(env)
-#vars.Update(env)
-
-#if env['magickpp']:
-  #if not env.WhereIs('Magick++-config'):
-    #raise SCons.Errors.UserError, 'imagemagick enabled, but not found'
-  #print 'checking for Magick++'
-
-
-#platform = ARGUMENTS.get('OD', Platform())
-#include = "#export/$PLATFORM/include"
-#lib = "#export/$PLATFORM/lib"
-#ex = "#export/$PLATFORM/ex"
-#env = Environment(CC = 'g++', 
-	#CCFLAGS='-O2 -march=i686 -Wall',
-	#PLATFORM = platform,
-	#BINDIR = ex,
-	#INCDIR = include,
-	#LIBDIR = lib,
-	#CPPPATH = [include],
-	#LIBPATH = [lib],
-	#LIBS = '')
-
-#env = Environment(CC = 'g++', 
-	##CCFLAGS='-O2 -march=i686 -Wall',
-	##CCFLAGS='-O0 -march=i686 -Wall',
-	#BINDIR = 'ex')
-
-#env.Program('etb2-parser',['build/debug/main.cpp'])
 
 env = Environment(
 	CPPPATH = [
@@ -64,22 +12,4 @@ env.Program(target='executable',source=Glob('*.cpp'))
 env.SharedLibrary(target='_shared',source=Glob('*.cpp'))
 env.StaticLibrary(target='_static',source=Glob('*.cpp'))
 env.Append(LIBS = ['Magick++', 'cryptopp', 'gflags'])
-
-#Default(env.Install(directory='bin', source='foo'))
-
-
-#Import('env')
-#Program('foo', 'foo.c')
-
-#env = Environment()
-#env.Append(CCFLAGS='-O2')
-#env.Append(LIBS = ['SDL_image','GL'])
-
-
-#sources = Split("""
-#main.cpp
-#""")
-#object_list = env.Object(source = sources)
-
-#env.Program(target = "etb2-parser", source = object_list)
 
