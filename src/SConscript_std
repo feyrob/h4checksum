@@ -7,11 +7,18 @@ env = Environment(
   ],
   BINDIR = 'ex'
 )
-
-env.Program(target='executable',source=Glob('*.cpp'))
-#env.SharedLibrary(target='_shared',source=Glob('*.cpp'))
-#env.StaticLibrary(target='_static',source=Glob('*.cpp'))
-env.SharedLibrary(source=Glob('*.cpp'))
-env.StaticLibrary(source=Glob('*.cpp'))
 env.Append(LIBS = ['Magick++', 'cryptopp', 'gflags'])
+
+# executable = env.Program(target='executable',source=Glob('*.cpp'))
+executable = env.Program(source=Glob('*.cpp'))
+shared_lib = env.SharedLibrary(source=Glob('*.cpp'))
+static_lib = env.StaticLibrary(source=Glob('*.cpp'))
+
+env.Install("/usr/bin",executable)
+env.Install("/usr/lib", [shared_lib,static_lib])
+
+usr_bin_alias = env.Alias('install-bin', ['/usr/bin'])
+usr_lib_alias = env.Alias('install-lib', ['/usr/lib'])
+
+env.Alias('install', [usr_bin_alias, usr_lib_alias])
 
