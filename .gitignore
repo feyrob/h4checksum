@@ -1,0 +1,9 @@
+# ignore vims temporary files
+*.swp
+# ignore object file
+*.o
+# ignore shared libraries
+*.so
+# ignore static libraries
+*.a
+
