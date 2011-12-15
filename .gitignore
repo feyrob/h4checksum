@@ -7,3 +7,4 @@
 # ignore static libraries
 *.a
 
+.sconsign.dblite
