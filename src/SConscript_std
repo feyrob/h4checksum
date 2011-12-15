@@ -9,7 +9,9 @@ env = Environment(
 )
 
 env.Program(target='executable',source=Glob('*.cpp'))
-env.SharedLibrary(target='_shared',source=Glob('*.cpp'))
-env.StaticLibrary(target='_static',source=Glob('*.cpp'))
+#env.SharedLibrary(target='_shared',source=Glob('*.cpp'))
+#env.StaticLibrary(target='_static',source=Glob('*.cpp'))
+env.SharedLibrary(source=Glob('*.cpp'))
+env.StaticLibrary(source=Glob('*.cpp'))
 env.Append(LIBS = ['Magick++', 'cryptopp', 'gflags'])
 
