@@ -184,13 +184,6 @@ string image_sha256(Image src_image, bool prepend_dimensions){
 }
 
 
-// always returns true
-bool rotate_image(Image &image){
-  image.rotate(90.0);
-  return true;
-}
-
-
 template <typename T> 
 struct xor_op {
   T operator()( T ch1, T ch2 ) {
@@ -249,7 +242,10 @@ string image_ri_sha256(Image src_image){
     // someone please tell me how to do this better
     (i >= 0) // condition for loop exit
     && 
-    rotate_image(work_image) // short circuit (only 3 calls to rotate)
+    (
+  		work_image.rotate(90.0),
+    	true 
+    )
   );
   return xor_acc;
 }
